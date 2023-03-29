@@ -2,6 +2,7 @@ import React from "react";
 
 const SingleCart = (props) => {
   const { description, movieName, poster, watchTime, imdbRating } = props.movie;
+
   return (
     <div className="flex justify-center">
       <div className="movie__cart card w-96 bg-base-100 shadow-xl mb-10">
@@ -15,7 +16,12 @@ const SingleCart = (props) => {
           <p>rating: {imdbRating}</p>
         </div>
         <div className="flex justify-center pb-4">
-          <button className="btn btn-primary w-3/5">Book Now</button>
+          <button
+            onClick={() => props.handleWatchTime(watchTime)}
+            className="btn btn-primary w-3/5"
+          >
+            Book Now
+          </button>
         </div>
       </div>
     </div>
