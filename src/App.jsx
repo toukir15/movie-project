@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Home from "./components/Home/Home";
 import SideCart from "./components/SideCart/SideCart";
 
 const App = () => {
+  const [watchTime, setWatchTime] = useState("");
   const handleWatchTime = (time) => {
     const previousWatchTime = localStorage.getItem("watchTime");
     if (previousWatchTime) {
       const totalWatchTime = +previousWatchTime + time;
       localStorage.setItem("watchTime", totalWatchTime);
+      setWatchTime(totalWatchTime);
     } else {
       localStorage.setItem("watchTime", time);
+      watchTime(time);
     }
   };
   return (
@@ -19,7 +22,7 @@ const App = () => {
           <Home handleWatchTime={handleWatchTime}></Home>
         </div>
         <div className="flex-grow-[5] border-2 text-center">
-          <SideCart></SideCart>
+          <SideCart watchTime={watchTime}></SideCart>
         </div>
       </div>
     </>
